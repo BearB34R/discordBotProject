@@ -1,15 +1,13 @@
-import dotenv from "dotenv";
-dotenv.config();
+require("dotenv/config");
 
-import { Client, GatewayIntentBits } from "discord.js";
+const { Client } = require("discord.js");
 
 const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.DirectMessage,
-  ],
+  intents: ["Guilds", "GuildMembers", "GuildMessages"],
 });
 
-client.login(process.env.DISCORD_TOKEN);
+client.on("ready", () => {
+  console.log("Bot is ready");
+});
+
+client.login(process.env.TOKEN);
